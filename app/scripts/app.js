@@ -12,10 +12,10 @@ feed.playersUpdated(function(data) {
 
 var RankList = React.createClass({
   render: function() {
-    var createItem = function(itemText) {
-      return <li>{itemText}</li>;
+    var createItem = function(player) {
+      return <tr><td>{player.id}</td><td>{player.name}</td><td>{player.points}</td></tr>;
     };
-    return <ul>{this.props.players.map(createItem)}</ul>;
+    return <table>{this.props.players.map(createItem)}</table>;
   }
 });
 
