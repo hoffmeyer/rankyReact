@@ -1,0 +1,8 @@
+{
+  "name": "rankyreact",
+  "version": "0.0.1",
+  "dependencies": {
+    "bootstrap-sass-official": ">=3.3.0",
+    "modernizr": "^2.8.3"
+  }
+}
