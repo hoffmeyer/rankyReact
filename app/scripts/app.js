@@ -6,21 +6,37 @@ var React = window.React = require('react'),
     feed = require('./helpers/feed'),
     mountNode = document.getElementById('app');
 
-feed.playersUpdated(function(data) {
-    console.log('subscriber called for playerCreated');
-});
-
 var RankList = React.createClass({
   render: function() {
-    var createItem = function(player) {
-      return <tr key={player.id}><td>{player.id}</td><td>{player.name}</td><td>{player.points}</td></tr>;
+    var createItem = function(player, index) {
+      return <tr key={player.id}><td>{index + 1}</td><td>{player.name}</td><td>{player.points}</td></tr>;
     };
     return <table>{this.props.players.map(createItem)}</table>;
   }
 });
 
 var RankyApp = React.createClass({
+  updateWithPlayer: function(player){
+      var players = this.state.players;
+      var newPlayers = players.filter(function(e){
+        return e.id !== player.id;
+      });
+      newPlayers.push(player);
+      newPlayers.sort(function(a, b){
+          return b.points - a.points;
+      });
+      this.setState({players: newPlayers});
+  },
   getInitialState: function() {
+    var _this = this;
+    feed.playersUpdated(function(players){
+      players.map(function(player){
+        _this.updateWithPlayer(player);
+      });
+    }.bind(this));
+    feed.playerCreated(function(player){
+      this.updateWithPlayer(player);
+    }.bind(this));
     return {players: []};
   },
   componentDidMount: function() {
