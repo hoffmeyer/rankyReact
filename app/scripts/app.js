@@ -11,7 +11,7 @@ var RankList = React.createClass({
     var createItem = function(player, index) {
       return <tr key={player.id}><td className="text-right">{index + 1}</td><td>{player.name}</td><td className="text-right">{player.points}</td></tr>;
     };
-    return  <table className="table table-striped">
+    return  <table className="table table-striped table-hover">
               <thead>
                 <tr><th className="text-right">No</th><th>Player name</th><th className="text-right">Score</th></tr>
               </thead>
