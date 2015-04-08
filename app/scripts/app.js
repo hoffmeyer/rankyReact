@@ -9,9 +9,16 @@ var React = window.React = require('react'),
 var RankList = React.createClass({
   render: function() {
     var createItem = function(player, index) {
-      return <tr key={player.id}><td>{index + 1}</td><td>{player.name}</td><td>{player.points}</td></tr>;
+      return <tr key={player.id}><td className="text-right">{index + 1}</td><td>{player.name}</td><td className="text-right">{player.points}</td></tr>;
     };
-    return <table>{this.props.players.map(createItem)}</table>;
+    return  <table className="table table-striped">
+              <thead>
+                <tr><th className="text-right">No</th><th>Player name</th><th className="text-right">Score</th></tr>
+              </thead>
+              <tbody>
+                {this.props.players.map(createItem)}
+              </tbody>
+            </table>;
   }
 });
 
@@ -50,11 +57,15 @@ var RankyApp = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <h3>The list</h3>
-        <RankList players={this.state.players} />
-        <Timer />
-      </div>
+          <div className="container">
+            <div class="header">
+              <a className="btn btn-primary pull-right">Add Score</a>
+              <h1>Ranky</h1>
+            </div>
+            <div>
+              <RankList players={this.state.players} />
+            </div>
+          </div>
     );
   }
 });
