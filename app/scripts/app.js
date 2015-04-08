@@ -61,6 +61,7 @@ var RankyApp = React.createClass({
             <div class="header">
               <a className="btn btn-primary pull-right">Add Score</a>
               <h1>Ranky</h1>
+              <p className="lead" >Scoring the elite</p>
             </div>
             <div>
               <RankList players={this.state.players} />
