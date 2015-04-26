@@ -2,7 +2,7 @@
 
 var React = window.React = require('react'),
     $ = require('jquery'),
-    AddMatchButton = require('./ui/AddMatchButton'),
+    Navigation = require('./ui/Navigation'),
     Content = require('./ui/Content'),
     feed = require('./helpers/feed'),
     mountNode = document.getElementById('app');
@@ -41,20 +41,25 @@ var RankyApp = React.createClass({
           }
       }.bind(this));
   },
-  addButtonClicked: function(navigateTo){
-      console.log('clicked');
+  pages: function(){
+      return {
+          list: 'The List',
+          addScore: 'Add score'
+      }
+  },
+  onNavigate: function(newPlace){
       this.setState({
-          currentPage: navigateTo
+          currentPage: newPlace
       });
   },
   render: function() {
     return (
           <div className="container">
-            <div className="header">
-              <AddMatchButton buttonClicked={this.addButtonClicked}/>
+            <div className="">
               <h1>Ranky</h1>
               <p className="lead" >Scoring the elite</p>
             </div>
+            <Navigation onNavigate={this.onNavigate} pages={this.pages()} currentPage={this.state.currentPage}/>
             <div>
               <Content show={this.state.currentPage} players={this.state.players} />
             </div>

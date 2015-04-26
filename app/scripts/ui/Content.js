@@ -7,7 +7,7 @@ var React = require('react'),
 var Content = React.createClass({
     getContent: function() {
         console.log(this.props.show);
-        if(this.props.show === 'addPlayer'){
+        if(this.props.show === 'addScore'){
             return <AddMatch players={this.props.players} />;
         }
         return <RankList players={this.props.players} />
