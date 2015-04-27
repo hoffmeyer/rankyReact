@@ -11,7 +11,7 @@ var Navigation = React.createClass({
         var items = [];
 
         for( var key in this.props.pages ){
-            items.push(<NavigationItem name={this.props.pages[key]} destination={key} currentPage={this.props.currentPage} onNavigate={this.props.onNavigate} />);
+            items.push(<NavigationItem key={key} name={this.props.pages[key]} destination={key} currentPage={this.props.currentPage} onNavigate={this.props.onNavigate} />);
         };
 
         return (
