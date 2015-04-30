@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    $ = require('jquery');
 
 var AddMatch = React.createClass({
     render: function(){
@@ -56,7 +57,7 @@ var AddMatch = React.createClass({
         this.setState({team1player2: event.target.value});
     },
     onTeam1ScoreChange: function(event){
-        this.setState({team1Score: event.target.value});
+        this.setState({team1score: event.target.value});
     },
     onTeam2Player1Change: function( event ){
         this.setState({team2player1: event.target.value});
@@ -65,11 +66,29 @@ var AddMatch = React.createClass({
         this.setState({team2player2: event.target.value});
     },
     onTeam2ScoreChange: function(event){
-        this.setState({team1Score: event.target.value});
+        this.setState({team2score: event.target.value});
     },
     handleClick: function(e){
         e.preventDefault();
-        console.log(this.state);
+        var data = {
+            team1: {
+                players: [this.state.team1player1, this.state.team1player2],
+                score: this.state.team1score
+            },
+            team2: {
+                players: [this.state.team2player1, this.state.team2player2],
+                score: this.state.team2score
+            }
+        }
+        $.ajax({
+            type: 'POST',
+            url: this.props.source + '/match',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(result){
+                console.log(result);
+            }
+        });
     }
 });
 

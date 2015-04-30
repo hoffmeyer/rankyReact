@@ -61,7 +61,7 @@ var RankyApp = React.createClass({
             </div>
             <Navigation onNavigate={this.onNavigate} pages={this.pages()} currentPage={this.state.currentPage}/>
             <div>
-              <Content show={this.state.currentPage} players={this.state.players} />
+              <Content show={this.state.currentPage} players={this.state.players} source={this.props.source}/>
             </div>
           </div>
     );
