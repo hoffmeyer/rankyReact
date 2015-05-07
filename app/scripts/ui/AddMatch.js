@@ -1,7 +1,8 @@
 'use strict';
 
 var React = require('react'),
-    $ = require('jquery');
+    $ = require('jquery'),
+    Typeahead = require('./Typeahead');
 
 var AddMatch = React.createClass({
     render: function(){
@@ -10,7 +11,7 @@ var AddMatch = React.createClass({
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team1player1">Player 1</label>
                     <div className="col-sm-10">
-                        <input className="form-control" type="text" id="team1player1" onChange={this.onTeam1Player1Change} autoFocus="true" />
+                        <Typeahead className="form-control" id="team1player1" onChange={this.onTeam1Player1Change} autoFocus="true" />
                     </div>
                 </div>
                 <div className="form-group">

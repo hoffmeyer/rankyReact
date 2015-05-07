@@ -1,6 +1,6 @@
 'use strict';
 
-var React = window.React = require('react'),
+var React = React = require('react'),
     $ = require('jquery'),
     Navigation = require('./ui/Navigation'),
     Content = require('./ui/Content'),
