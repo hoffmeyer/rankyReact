@@ -11,19 +11,19 @@ var AddMatch = React.createClass({
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team1player1">Player 1</label>
                     <div className="col-sm-10">
-                        <Typeahead className="form-control" id="team1player1" onChange={this.onTeam1Player1Change} autoFocus="true" />
+                        <Typeahead className="form-control" id="team1player1" onChange={this.onTeam1Player1Change} autoFocus="true" players={this.props.players} />
                     </div>
                 </div>
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team1player2">Player 2</label>
                     <div className="col-sm-10">
-                        <input className="form-control" type="text" id="team1player2" onChange={this.onTeam1Player2Change}/>
+                        <Typeahead className="form-control" id="team1player2" onChange={this.onTeam1Player2Change} players={this.props.players}/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team1score">Score</label>
                     <div className="col-sm-2">
-                        <input className="form-control" type="text" id="team1score" onChange={this.onTeam1ScoreChange}/>
+                        <input className="form-control" type="text" id="team1score" onChange={this.onTeam1ScoreChange} />
                     </div>
                 </div>
 
@@ -31,19 +31,19 @@ var AddMatch = React.createClass({
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team2player1">Player 1</label>
                     <div className="col-sm-10">
-                        <input className="form-control" type="text" id="team2player1" onChange={this.onTeam2Player1Change}/>
+                        <Typeahead className="form-control" id="team2player1" onChange={this.onTeam2Player1Change} players={this.props.players}/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team2player2">Player 2</label>
                     <div className="col-sm-10">
-                        <input className="form-control" type="text" id="team2player2" onChange={this.onTeam2Player2Change}/>
+                        <Typeahead className="form-control" id="team2player2" onChange={this.onTeam2Player2Change} players={this.props.players}/>
                     </div>
                 </div>
                 <div className="form-group">
                     <label className="col-sm-2 control-label" htmlFor="team2score">Score</label>
                     <div className="col-sm-2">
-                        <input className="form-control" type="text" id="team2score" onChange={this.onTeam2ScoreChange}/>
+                        <input className="form-control" type="text" id="team2score" onChange={this.onTeam2ScoreChange} />
                     </div>
                 </div>
                 <div className="form-group">
@@ -51,20 +51,20 @@ var AddMatch = React.createClass({
                 </div>
             </form>
     },
-    onTeam1Player1Change: function( event ){
-        this.setState({team1player1: event.target.value});
+    onTeam1Player1Change: function( value ){
+        this.setState({team1player1: value});
     },
-    onTeam1Player2Change: function( event ){
-        this.setState({team1player2: event.target.value});
+    onTeam1Player2Change: function( value ){
+        this.setState({team1player2: value});
     },
     onTeam1ScoreChange: function(event){
         this.setState({team1score: event.target.value});
     },
-    onTeam2Player1Change: function( event ){
-        this.setState({team2player1: event.target.value});
+    onTeam2Player1Change: function( value ){
+        this.setState({team2player1: value});
     },
-    onTeam2Player2Change: function( event ){
-        this.setState({team2player2: event.target.value});
+    onTeam2Player2Change: function( value ){
+        this.setState({team2player2: value});
     },
     onTeam2ScoreChange: function(event){
         this.setState({team2score: event.target.value});
