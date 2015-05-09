@@ -70,6 +70,7 @@ var AddMatch = React.createClass({
         this.setState({team2score: event.target.value});
     },
     handleClick: function(e){
+        var self = this;
         e.preventDefault();
         var data = {
             team1: {
@@ -87,7 +88,7 @@ var AddMatch = React.createClass({
             data: JSON.stringify(data),
             contentType: 'application/json',
             success: function(result){
-                console.log(result);
+                self.props.onNavigate('list');
             }
         });
     }
