@@ -8,12 +8,14 @@ var Typeahead = React.createClass({
                     value: '', 
                     matchingPlayers: [],
                     keyboardSelection: -1,
-                    showDropdown: false
+                    showDropdown: false,
+                    valid: false
                 };
     },
     onChange: function(e){
         this.setState({ value: e.target.value, showDropdown: true });
         this.updateDropdown(e.target.value, true);
+        this.validate(e.target.value);
     },
     blur: function(e){
         this.setState({keyboardSelection: -1, showDropdown: false});
@@ -37,17 +39,19 @@ var Typeahead = React.createClass({
         }
         return [];
     },
-    validate: function(){
-        var self = this;
+    validate: function(value){
+        var self = this,
+            value = value || this.state.value;
 
         var matchingPlayers = this.props.players.filter(function(element){
-            return self.state.value.toLowerCase() === element.name.toLowerCase();
+            return value.toLowerCase() === element.name.toLowerCase();
         });
         if( matchingPlayers.length === 1 ){
-            this.setState( { value: matchingPlayers[0].name });
             this.props.onChange(matchingPlayers[0].id);
+            this.setState( { value: matchingPlayers[0].name, valid: true });
         } else {
             this.props.onChange(undefined);
+            this.setState( {valid: false });
         }
     },
     keyDown: function(e){
@@ -74,7 +78,7 @@ var Typeahead = React.createClass({
                     var value = this.state.matchingPlayers[this.state.keyboardSelection].name;
                     this.setState({value: value, showDropdown: false, keyboardSelection: -1});
                     this.updateDropdown(value, false);
-                    this.validate();
+                    this.validate(value);
                 }
                 e.preventDefault();
                 break;
@@ -105,7 +109,9 @@ var Typeahead = React.createClass({
                             onChange={this.onChange} 
                             onBlur={this.blur}
                             onKeyDown={this.keyDown}
+                            autoComplete="off"
                     />
+                    <span>{this.state.valid ? '✓' : ''}</span>
                     <div className="typeahead_list">
                         {this.state.matchingPlayers.map(createItem)}
                     </div>
