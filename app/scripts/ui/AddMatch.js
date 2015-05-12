@@ -74,14 +74,29 @@ var AddMatch = React.createClass({
         e.preventDefault();
         var data = {
             team1: {
-                players: [this.state.team1player1, this.state.team1player2],
-                score: this.state.team1score
+                score: this.state.team1score,
+                players: []
             },
             team2: {
-                players: [this.state.team2player1, this.state.team2player2],
-                score: this.state.team2score
+                score: this.state.team2score,
+                players: []
             }
         }
+
+        if(this.state.team1player1){
+            data.team1.players.push(this.state.team1player1);
+        }
+        if(this.state.team1player2){
+            data.team1.players.push(this.state.team1player2);
+        }
+
+        if(this.state.team2player1){
+            data.team2.players.push(this.state.team2player1);
+        }
+        if(this.state.team2player2){
+            data.team2.players.push(this.state.team2player2);
+        }
+
         $.ajax({
             type: 'POST',
             url: this.props.source + '/match',
