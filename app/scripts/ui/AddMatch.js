@@ -47,9 +47,21 @@ var AddMatch = React.createClass({
                     </div>
                 </div>
                 <div className="form-group">
-                    <button className="btn btn-primary pull-right" onClick={this.handleClick} >Register</button>
+                    <button disabled={!this.validate()} className="btn btn-primary pull-right" onClick={this.handleClick} >Register</button>
                 </div>
             </form>
+    },
+    validate: function(){
+        console.log(this);
+        var isNum = /^[0-9]+$/;
+        return  this.state !== null &&
+                this.state.team1player1 &&
+                this.state.team1score &&
+                this.state.team1score.match(isNum) &&
+                this.state.team1score &&
+                this.state.team2player1 &&
+                this.state.team2score &&
+                this.state.team2score.match(isNum);
     },
     onTeam1Player1Change: function( value ){
         this.setState({team1player1: value});
