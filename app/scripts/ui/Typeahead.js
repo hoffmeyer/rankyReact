@@ -111,7 +111,7 @@ var Typeahead = React.createClass({
                             onKeyDown={this.keyDown}
                             autoComplete="off"
                     />
-                    <span>{this.state.valid ? '✓' : ''}</span>
+                    <span className="typeahead_validmarker">{this.state.valid ? '✓' : ''}</span>
                     <div className="typeahead_list">
                         {this.state.matchingPlayers.map(createItem)}
                     </div>

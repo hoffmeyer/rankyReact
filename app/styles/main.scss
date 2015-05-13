@@ -21,3 +21,11 @@ $icon-font-path: "/bower_components/bootstrap-sass-official/assets/fonts/";
     background-color: #337ab7;
     color: #fff;
 }
+
+.typeahead_validmarker {
+    position: absolute;
+    top: 7px;
+    right: 25px;
+    color: green;
+    font-weight: bold;
+}

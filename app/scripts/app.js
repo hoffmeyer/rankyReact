@@ -1,6 +1,6 @@
 'use strict';
 
-var React = React = require('react'),
+var React = window.React = require('react'),
     $ = require('jquery'),
     Navigation = require('./ui/Navigation'),
     Content = require('./ui/Content'),
@@ -45,7 +45,7 @@ var RankyApp = React.createClass({
       return {
           list: 'The List',
           addScore: 'Add score'
-      }
+      };
   },
   onNavigate: function(newPlace){
       this.setState({
