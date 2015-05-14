@@ -24,8 +24,23 @@ var AddPlayer = React.createClass({
         }
         return false;
     },
-    handleClick: function(){
-        console.log('clicked');
+    handleClick: function(e){
+        var self = this,
+            data = {
+            name: this.state.name
+        };
+
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: this.props.source + '/player',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            success: function(result){
+                self.props.onNavigate('list');
+            }
+        });
     },
     onChange: function(e){
         this.setState({name: e.target.value});
