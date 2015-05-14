@@ -52,7 +52,6 @@ var AddMatch = React.createClass({
             </form>
     },
     validate: function(){
-        console.log(this);
         var isNum = /^[0-9]+$/;
         return  this.state !== null &&
                 this.state.team1player1 &&
